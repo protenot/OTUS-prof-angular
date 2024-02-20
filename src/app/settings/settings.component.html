@@ -1,1 +1,8 @@
-<p>settings works!</p>
+<form name="goForm">
+<label for="native-language">Выберете свой родной язык:</label>
+<select  name = "native-language" id = "native-language" (change)="onChangeNativeLanguage($event)">
+<option value="">Выберете язык</option>
+<option value="russian">Русский</option>
+<option value="english">English</option>
+</select>
+</form>
