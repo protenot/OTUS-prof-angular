@@ -18,8 +18,13 @@ export class AppComponent {
   title = 'OTUS-prof-angular';
 }
 @NgModule({
-  imports: [RouterModule.forRoot(routes), BrowserAnimationsModule,
-    MatSlideToggleModule, BrowserModule, CommonModule],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    BrowserModule,
+    CommonModule,
+  ],
   exports: [RouterModule],
 })
 export class AppRouting {}

@@ -9,15 +9,13 @@ import { NgIf, NgSwitch, CommonModule } from '@angular/common';
   imports: [NgIf, NgSwitch, CommonModule],
   templateUrl: './go.component.html',
   styleUrl: './go.component.css',
- // providers:[SettingsServiceService]
+  // providers:[SettingsServiceService]
 })
-
-
 export class GoComponent implements OnInit {
-  selectedNativeLanguage:string = '';
-  constructor(private SettingsService:SettingsService){ }
+  selectedNativeLanguage: string = '';
+  constructor(private SettingsService: SettingsService) {}
   ngOnInit(): void {
-    this.SettingsService.selectedNativeLanguage$.subscribe(value => {
+    this.SettingsService.selectedNativeLanguage$.subscribe((value) => {
       this.selectedNativeLanguage = value;
     });
   }

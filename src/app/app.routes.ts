@@ -6,5 +6,6 @@ import { SettingsComponent } from './settings/settings.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'go', component: GoComponent },
+  { path: 'settings/:selectedNativeLanguage', component: SettingsComponent },
   { path: 'settings', component: SettingsComponent },
 ];

@@ -10,14 +10,13 @@ import { LANGUAGES } from '../../fakeDB/database';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  languages=LANGUAGES;
+  languages = LANGUAGES;
   selectedLanguage = '';
-  constructor(private settingService:SettingsService){}
-  onCnangeNativeLanguage(event:Event){
+  constructor(private settingService: SettingsService) {}
+  onCnangeNativeLanguage(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedLanguage = selectElement.value;
-    this.settingService.setSelectedNativeLanguage(this.selectedLanguage) 
-    console.log('Выбранный язык : '+this.selectedLanguage)
+    this.settingService.setSelectedNativeLanguage(this.selectedLanguage);
+    console.log('Выбранный язык : ' + this.selectedLanguage);
   }
-
 }

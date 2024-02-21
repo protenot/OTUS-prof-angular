@@ -1,9 +1,25 @@
-
-<label for="native-language">Выберете свой родной язык/Choose your native language:</label>
-<select  name = "native-language" id = "native-language" (change)="onCnangeNativeLanguage($event)">
-<option value="">Выберете/Choose</option>
-<option *ngFor="let language of languages" [value]="language.toLowerCase()">
-{{language}}
-</option>
-
+<label for="native-language"
+  >Выберете свой родной язык/Choose your native language:</label
+>
+<select
+  name="native-language"
+  id="native-language"
+  (change)="onCnangeNativeLanguage($event)"
+>
+  <option value="">Выберете/Choose</option>
+  <option *ngFor="let language of languages" [value]="language.toLowerCase()">
+    {{ language }}
+  </option>
 </select>
+<div [ngSwitch]="selectedLanguage">
+    <div *ngSwitchCase="'russian'">
+      Для начала упражнений перейдите на страницу настроек
+    </div>
+    <div *ngSwitchCase="'english'">
+        To start the exercises, go to the settings page
+    </div>
+    <div *ngSwitchDefault>
+
+    </div>
+  </div>
+  
