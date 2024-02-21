@@ -1,1 +1,5 @@
-<p> Вы выбрали {{selectedNativeLanguage}}</p>
+<div [ngSwitch]="selectedNativeLanguage">
+<p *ngSwitchCase = "'russian'"> Вы выбрали русский язык</p>
+<p *ngSwitchCase = "'english'"> You have selected English language</p>
+<p *ngSwitchDefault> Выберете свой родной язык</p>
+</div>

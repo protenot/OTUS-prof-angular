@@ -18,5 +18,12 @@ getSelectedNativeLanguage():string{
   console.log('---', this.selectedNativeLanguageSubject.value)
   return this.selectedNativeLanguageSubject.value;
 }
+
+private selectedLearningLanguageSubject = new BehaviorSubject<string>('')
+selectedLearningLanguage$=this.selectedLearningLanguageSubject.asObservable();
+setSelectedLearningLanguage(value:string):void{
+  this.selectedLearningLanguageSubject.next(value)
+}
+
   constructor() { }
 }
