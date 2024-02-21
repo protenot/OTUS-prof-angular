@@ -1,0 +1,17 @@
+<p>form works!</p>
+<p>{{wordNumber}}</p>
+<div [ngSwitch]="selectedLearningLanguage">
+    <div *ngSwitchCase="'english'">
+        <div *ngIf = 'currentWord'>
+            <p>Как слово {{currentWord}} переводится на английский язык</p>
+            <input type="text" [(ngModel)]="userAnswer" placeholder="Введите перевод">
+            <button (click)="checkAnswer(userAnswer)">Проверить</button>
+        </div>
+        <div *ngIf="showResult">
+            <p>{{resultMessage}}</p>
+            <button (click)="nextWord()">Следующее слово</button>
+        </div>
+    </div>
+
+
+</div>

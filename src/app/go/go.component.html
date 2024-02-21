@@ -1,10 +1,23 @@
-<div [ngSwitch]="selectedNativeLanguage">
-  <div *ngSwitchCase="'russian'">Вы выбрали русский язык
-  <p>Для продолжения перейдите в Настройки
+<div [ngSwitch]="selectedLearningLanguage">
+  <div *ngSwitchCase="'russian'">You have selected Russian for exercises and want to know {{wordNumber}}  words
+  <button (click)="showForm=true">
+Let's start!
+  </button>
+  <app-form *ngIf="showForm"
+  [selectedLearningLanguage]="selectedLearningLanguage"
+    [wordNumber]="wordNumber"
+  ></app-form>
+</div>
+  <div *ngSwitchCase="'english'">Вы выбрали для упражнений английский язык и хотите узнать {{wordNumber}} слов
+<button (click)="showForm=true">Давайте начнем!</button>
+<app-form *ngIf="showForm"
+[selectedLearningLanguage]="selectedLearningLanguage"
+[wordNumber]="wordNumber"
+></app-form>
+</div>
+    <p *ngSwitchDefault>Выберете свой родной язык/Choose your native language</p>
 
-  </p>
 </div>
-  <p *ngSwitchCase="'english'">You have selected English language</p>
-  <p *ngSwitchDefault>Выберете свой родной язык</p>
-</div>
+
+
 
