@@ -1,5 +1,6 @@
-<p>form works!</p>
-<p>{{wordNumber}}</p>
+<p>Потрачено: {{ timeSpent }} секунд</p>
+
+
 <div [ngSwitch]="selectedLearningLanguage">
     <div *ngSwitchCase="'english'">
         <div *ngIf = 'currentWord'>

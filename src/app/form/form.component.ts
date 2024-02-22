@@ -24,13 +24,16 @@ export class FormComponent implements OnInit{
   userAnswer:string='';
   showResult: boolean = false;
   resultMessage: string='';
+  timeSpent:number=0;
+  exerciseFinished: boolean = false;
+
   private availableWords:string[]=[];
   constructor(
     private translatorService:TranslatorService,
    
     ){}
   ngOnInit(): void {
-    
+    this.startTimer();
     this.currentWord=this.firstWord;
     
     const copyOfWords = [...this.words];
@@ -44,16 +47,19 @@ export class FormComponent implements OnInit{
         copyOfWords.splice(randomIndex,1)
     }
   }
-  nextWord(){
+  nextWord():boolean{
     if(this.availableWords.length===0){
-      this.resultMessage ="Вы выполнили упражнение!"
-      return
+      this.resultMessage =`Вы выполнили упражнение за ${this.timeSpent} секунд!`
+      this.exerciseFinished = true;
+      return  this.exerciseFinished
     }    
     const randomIndex = Math.floor(Math.random() * this.availableWords.length);
     this.currentWord = this.availableWords[randomIndex];
     this.userAnswer = '';
     this.showResult = false;
     this.availableWords.splice(randomIndex,1)
+    this.exerciseFinished = false;
+    return  this.exerciseFinished
   }
   checkAnswer(userAnswer:string){
     this.userAnswer=userAnswer;
@@ -73,5 +79,16 @@ this.resultMessage = 'Верно!';
    console.error('Произошла ошибка при переводе:', error);
    } */
 )  }
+
+startTimer() {
+  
+  const timer = setInterval(() => {
+    if (!this.exerciseFinished) {
+      this.timeSpent++;
+    } else {
+      clearInterval(timer); // Остановить таймер
+    }
+  }, 1000);
+}
 
 }
