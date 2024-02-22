@@ -10,15 +10,23 @@ export class TranslatorService {
   private apiUrl = 'https://api.mymemory.translated.net/get';
   constructor(private http:HttpClient) {}
 translateWord(word:string, targetLanguage:string):Observable<string>{
-const url =`${this.apiUrl}?q=${word}&langpair=en|${targetLanguage}`
+  const regex = /[^\p{L}\p{M}]/gu;
+  const url =`${this.apiUrl}?q=${word}&langpair=en|${targetLanguage}&mt=1`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+console.log("ответ от переводчика ", this.http.get<any>(url).pipe(
+  map(res=>res.responseData.translatedText)
+  ))
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 return this.http.get<any>(url).pipe(
-map(res=>res.responseData.translatedText)
+map(res=>res.responseData.translatedText.replace(regex,''))
 )
 }
-compareTranslation(userAnswer:string, correctAnswer:string):boolean{
-  console.log('correctAnswer ',correctAnswer,'userAnswer ', userAnswer )
-  return userAnswer.trim().toLowerCase()==correctAnswer.trim().toLowerCase()
+compareTranslation(correctAnswer:string, userAnswer:string):boolean{
+  const regex = /^[a-z]+$/i;
+  const cleanUserAnswer = userAnswer.trim().replace(regex,'');
+  const cleanCorrectAnswer = correctAnswer.trim().replace(regex,'');
+  console.log('correctAnswer ',cleanCorrectAnswer,'userAnswer ', cleanUserAnswer )
+  return cleanUserAnswer.trim().toLowerCase()==cleanCorrectAnswer.trim().toLowerCase()
 }
 
 }
