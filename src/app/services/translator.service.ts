@@ -10,6 +10,7 @@ export class TranslatorService {
   private apiUrl = 'https://api.mymemory.translated.net/get';
   constructor(private http:HttpClient) {}
 translateWord(word:string, targetLanguage:string):Observable<string>{
+  console.log("На перевод отправлено слово ", word)
   const regex = /[^\p{L}\p{M}]/gu;
   const url =`${this.apiUrl}?q=${word}&langpair=en|${targetLanguage}&mt=1`
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

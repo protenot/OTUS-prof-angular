@@ -31,6 +31,7 @@
     name="words-number" 
     id="words-number"
     (change)="onChangeQuantity($event)">
+    <option value="">---</option>
     <option 
     *ngFor="let item of [].constructor((wordsNumber-5)); let i = index"
      [value]="i">{{i+5}}</option>

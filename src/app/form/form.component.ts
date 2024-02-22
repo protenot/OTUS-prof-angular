@@ -24,21 +24,40 @@ export class FormComponent implements OnInit{
   userAnswer:string='';
   showResult: boolean = false;
   resultMessage: string='';
-
-  constructor(private translatorService:TranslatorService){}
+  private availableWords:string[]=[];
+  constructor(
+    private translatorService:TranslatorService,
+   
+    ){}
   ngOnInit(): void {
-      this.currentWord=this.firstWord
+    
+    this.currentWord=this.firstWord;
+    
+    const copyOfWords = [...this.words];
+    this.availableWords=[]
+      
+      while(this.availableWords.length<this.wordNumber-1 && copyOfWords.length>0){
+        const randomIndex = Math.floor(Math.random()*copyOfWords.length)
+      
+      const randomWord = copyOfWords[randomIndex]
+        this.availableWords.push(randomWord);
+        copyOfWords.splice(randomIndex,1)
+    }
   }
-  
   nextWord(){
-    const randomIndex = Math.floor(Math.random()*this.words.length)
-    this.currentWord = this.words[randomIndex];
+    if(this.availableWords.length===0){
+      this.resultMessage ="Вы выполнили упражнение!"
+      return
+    }    
+    const randomIndex = Math.floor(Math.random() * this.availableWords.length);
+    this.currentWord = this.availableWords[randomIndex];
     this.userAnswer = '';
     this.showResult = false;
+    this.availableWords.splice(randomIndex,1)
   }
   checkAnswer(userAnswer:string){
     this.userAnswer=userAnswer;
-   this.translatorService.translateWord(this.userAnswer,'ru').
+   this.translatorService.translateWord(this.currentWord,'ru').
    subscribe(translatedText=>{
     if (this.translatorService.compareTranslation(
       translatedText, this.userAnswer
