@@ -1,5 +1,5 @@
 import { CommonModule, NgIf, NgSwitch } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WORDS } from '../../fakeDB/database';
 import { TranslatorService } from '../services/translator.service';
 import { FormsModule } from '@angular/forms';
@@ -14,17 +14,22 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   styleUrl: './form.component.css',
   providers: [HttpClient]
 })
-export class FormComponent {
+export class FormComponent implements OnInit{
   @Input() selectedLearningLanguage: string = ''; 
   @Input() wordNumber: number =0;
+  @Input() firstWord: string = '';
 
   words:string[]=WORDS;
-  currentWord:string = 'tree';
+  currentWord:string = '';
   userAnswer:string='';
   showResult: boolean = false;
   resultMessage: string='';
 
   constructor(private translatorService:TranslatorService){}
+  ngOnInit(): void {
+      this.currentWord=this.firstWord
+  }
+  
   nextWord(){
     const randomIndex = Math.floor(Math.random()*this.words.length)
     this.currentWord = this.words[randomIndex];

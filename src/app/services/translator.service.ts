@@ -17,7 +17,8 @@ map(res=>res.responseData.translatedText)
 )
 }
 compareTranslation(userAnswer:string, correctAnswer:string):boolean{
-  return userAnswer.toLowerCase()===correctAnswer.toLowerCase()
+  console.log('correctAnswer ',correctAnswer,'userAnswer ', userAnswer )
+  return userAnswer.trim().toLowerCase()==correctAnswer.trim().toLowerCase()
 }
 
 }

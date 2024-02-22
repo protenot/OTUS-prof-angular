@@ -9,10 +9,11 @@ Let's start!
   ></app-form>
 </div>
   <div *ngSwitchCase="'english'">Вы выбрали для упражнений английский язык и хотите узнать {{wordNumber}} слов
-<button (click)="showForm=true">Давайте начнем!</button>
+<button (click)="placeFirstWord()">Давайте начнем!</button>
 <app-form *ngIf="showForm"
 [selectedLearningLanguage]="selectedLearningLanguage"
 [wordNumber]="wordNumber"
+[firstWord]="firstWord"
 ></app-form>
 </div>
     <p *ngSwitchDefault>Выберете свой родной язык/Choose your native language</p>
