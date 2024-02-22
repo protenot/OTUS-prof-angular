@@ -13,15 +13,24 @@ translateWord(word:string, targetLanguage:string):Observable<string>{
   console.log("На перевод отправлено слово ", word)
   const regex = /[^\p{L}\p{M}]/gu;
   const url =`${this.apiUrl}?q=${word}&langpair=en|${targetLanguage}&mt=1`
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-console.log("ответ от переводчика ", this.http.get<any>(url).pipe(
-  map(res=>res.responseData.translatedText)
-  ))
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 return this.http.get<any>(url).pipe(
 map(res=>res.responseData.translatedText.replace(regex,''))
 )
 }
+
+translateRussianWord(word:string):Observable<string>{
+  console.log("На перевод отправлено слово ", word)
+ // const regex = /[^\p{L}\p{M}]/gu;
+  const url =`${this.apiUrl}?q=${word}&langpair=en|ru`
+console.log("url ", url)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+return this.http.get<any>(url).pipe(
+map(res=>res.responseData.translatedText)
+)
+}
+
 compareTranslation(correctAnswer:string, userAnswer:string):boolean{
   const regex = /^[a-z]+$/i;
   const cleanUserAnswer = userAnswer.trim().replace(regex,'');

@@ -1,6 +1,6 @@
 import { CommonModule, NgIf, NgSwitch } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { WORDS } from '../../fakeDB/database';
+import { RussianWords, WORDS } from '../../fakeDB/database';
 import { TranslatorService } from '../services/translator.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -20,6 +20,7 @@ export class FormComponent implements OnInit{
   @Input() firstWord: string = '';
 
   words:string[]=WORDS;
+  russianWords:string[]=RussianWords;
   currentWord:string = '';
   userAnswer:string='';
   showResult: boolean = false;
@@ -61,6 +62,21 @@ export class FormComponent implements OnInit{
     this.exerciseFinished = false;
     return  this.exerciseFinished
   }
+
+  nextEnglishWord():boolean{
+    if(this.availableWords.length===0){
+      this.resultMessage =`You completed the exercise in ${this.timeSpent} seconds!`
+      this.exerciseFinished = true;
+      return  this.exerciseFinished
+    }    
+    const randomIndex = Math.floor(Math.random() * this.availableWords.length);
+    this.currentWord = this.availableWords[randomIndex];
+    this.userAnswer = '';
+    this.showResult = false;
+    this.availableWords.splice(randomIndex,1)
+    this.exerciseFinished = false;
+    return  this.exerciseFinished
+  }
   checkAnswer(userAnswer:string){
     this.userAnswer=userAnswer;
    this.translatorService.translateWord(this.currentWord,'ru').
@@ -78,6 +94,23 @@ this.resultMessage = 'Верно!';
    /* error=>{
    console.error('Произошла ошибка при переводе:', error);
    } */
+)  }
+
+checkEnglishAnswer(userAnswer:string){
+  this.userAnswer=userAnswer;
+ this.translatorService.translateRussianWord(this.currentWord).
+ subscribe(translatedText=>{
+  if (this.translatorService.compareTranslation(
+    translatedText, this.userAnswer
+  )){
+this.showResult = true;
+this.resultMessage = 'Right!';
+  }else{
+    this.showResult=true;
+    this.resultMessage = 'Wrong. Try again.'; 
+  }
+ },
+
 )  }
 
 startTimer() {
