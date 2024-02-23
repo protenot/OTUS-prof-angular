@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     CommonModule,
     BrowserModule,
-    HttpClient
+    HttpClient,
   ],
 };

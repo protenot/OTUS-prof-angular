@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SettingsService {
-
   private selectedNativeLanguageSubject = new BehaviorSubject<string>('');
   selectedNativeLanguage$ = this.selectedNativeLanguageSubject.asObservable();
   setSelectedNativeLanguage(value: string): void {
@@ -21,26 +20,25 @@ export class SettingsService {
   private selectedLearningLanguageSubject = new BehaviorSubject<string>('');
   selectedLearningLanguage$ =
     this.selectedLearningLanguageSubject.asObservable();
-  
-    setSelectedLearningLanguage(value: string): void {
+
+  setSelectedLearningLanguage(value: string): void {
     this.selectedLearningLanguageSubject.next(value);
   }
 
-    getSelectedLearningLanguage():string{
-        return this.selectedLearningLanguageSubject.value
-    }
-
-  private selectedWordsQuantitySubject=new BehaviorSubject<number>(0);
-  selectedWordsQuantity$=
-  this.selectedWordsQuantitySubject.asObservable();
-
-  setSelectedWordsQuantity(number:number):void{
-    this.selectedWordsQuantitySubject.next(number);
-    console.log("number",number )
+  getSelectedLearningLanguage(): string {
+    return this.selectedLearningLanguageSubject.value;
   }
 
-  getSelectedWordsQuantity():number{
-    return this.selectedWordsQuantitySubject.value
+  private selectedWordsQuantitySubject = new BehaviorSubject<number>(0);
+  selectedWordsQuantity$ = this.selectedWordsQuantitySubject.asObservable();
+
+  setSelectedWordsQuantity(number: number): void {
+    this.selectedWordsQuantitySubject.next(number);
+    console.log('number', number);
+  }
+
+  getSelectedWordsQuantity(): number {
+    return this.selectedWordsQuantitySubject.value;
   }
   constructor() {}
 }

@@ -1,7 +1,7 @@
-<label for="native-language"
+<label *ngIf="!selectedLanguage" for="native-language"
   >Выберете свой родной язык/Choose your native language:</label
 >
-<select
+<select *ngIf="!selectedLanguage" 
   name="native-language"
   id="native-language"
   (change)="onCnangeNativeLanguage($event)"
@@ -12,14 +12,16 @@
   </option>
 </select>
 <div [ngSwitch]="selectedLanguage">
-    <div *ngSwitchCase="'russian'">
-      Для начала упражнений перейдите на страницу настроек
-    </div>
-    <div *ngSwitchCase="'english'">
-        To start the exercises, go to the settings page
-    </div>
-    <div *ngSwitchDefault>
-
-    </div>
+  <div *ngSwitchCase="'russian'">
+   <p>Вы выбрали русский язык</p>
+   <button (click)="clearSelectedLanguage()">Вернуться к выбору родного языка</button>
+   <p> Для начала упражнений перейдите на страницу настроек</p>
+   <p *ngIf = "selectedLearningLanguage"> Для упражнений вы выбрали английский язык {{selectedLearningLanguage}}</p>
   </div>
-  
+  <div *ngSwitchCase="'english'">
+    <p>To start the exercises, go to the settings page</p>
+    <p>You have chosen English</p>
+    <button (click)="clearSelectedLanguage()">Go back to choosing your native language</button>
+  </div>
+  <div *ngSwitchDefault></div>
+</div>

@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers:[HttpClient]
+  providers: [HttpClient],
 })
 export class AppComponent {
   title = 'OTUS-prof-angular';
