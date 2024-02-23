@@ -22,20 +22,21 @@ map(res=>res.responseData.translatedText.replace(regex,''))
 
 translateRussianWord(word:string):Observable<string>{
   console.log("На перевод отправлено слово ", word)
- // const regex = /[^\p{L}\p{M}]/gu;
-  const url =`${this.apiUrl}?q=${word}&langpair=en|ru`
+ const regex = /[^\p{L}\p{M}]/gu;
+  const url =`${this.apiUrl}?q=${word}&langpair=ru|en`
 console.log("url ", url)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 return this.http.get<any>(url).pipe(
-map(res=>res.responseData.translatedText)
+map(res=>res.responseData.translatedText.replace(regex,''))
 )
 }
 
 compareTranslation(correctAnswer:string, userAnswer:string):boolean{
-  const regex = /^[a-z]+$/i;
-  const cleanUserAnswer = userAnswer.trim().replace(regex,'');
-  const cleanCorrectAnswer = correctAnswer.trim().replace(regex,'');
-  console.log('correctAnswer ',cleanCorrectAnswer,'userAnswer ', cleanUserAnswer )
+
+  console.log('correctAnswer ',correctAnswer,'userAnswer ', userAnswer )
+  const cleanUserAnswer = userAnswer.trim();
+  const cleanCorrectAnswer = correctAnswer.trim();
+  console.log('cleancorrectAnswer ',cleanCorrectAnswer,'cleanuserAnswer ', cleanUserAnswer )
   return cleanUserAnswer.trim().toLowerCase()==cleanCorrectAnswer.trim().toLowerCase()
 }
 

@@ -6,7 +6,7 @@ import { FormComponent } from '../form/form.component';
 import { HttpClientModule, HttpClient  } from '@angular/common/http';
 //import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TranslatorService } from '../services/translator.service';
-import { WORDS } from '../../fakeDB/database';
+import { RussianWords, WORDS } from '../../fakeDB/database';
 @Component({
   selector: 'app-go',
   standalone: true,
@@ -22,13 +22,20 @@ export class GoComponent implements OnInit {
   wordNumber:number = 0;
   showForm: boolean = false;
   words:string[]=WORDS;
+  russianWords:string[]=RussianWords;
   firstWord:string=''
 
   constructor(private SettingsService: SettingsService) {}
   placeFirstWord(){
+    if (this.selectedLearningLanguage ==="english"){
     const randomIndex = Math.floor(Math.random()*this.words.length)
     this.firstWord = this.words[randomIndex];
     this.showForm=true
+    }else{
+      const randomIndex = Math.floor(Math.random()*this.words.length)
+    this.firstWord = this.russianWords[randomIndex];
+    this.showForm=true
+    }
   }
   ngOnInit(): void {
     this.SettingsService.selectedNativeLanguage$.subscribe((value) => {

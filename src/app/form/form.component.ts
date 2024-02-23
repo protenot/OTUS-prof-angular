@@ -36,17 +36,30 @@ export class FormComponent implements OnInit{
   ngOnInit(): void {
     this.startTimer();
     this.currentWord=this.firstWord;
-    
+    const copyOfRussianWords=[...this.russianWords]
     const copyOfWords = [...this.words];
     this.availableWords=[]
-      
+     if (this.selectedLearningLanguage==='english'){
       while(this.availableWords.length<this.wordNumber-1 && copyOfWords.length>0){
         const randomIndex = Math.floor(Math.random()*copyOfWords.length)
       
       const randomWord = copyOfWords[randomIndex]
-        this.availableWords.push(randomWord);
+       
+      this.availableWords.push(randomWord);
         copyOfWords.splice(randomIndex,1)
     }
+  }else{
+    while(this.availableWords.length<this.wordNumber-1 && copyOfRussianWords.length>0){
+
+      const randomIndex = Math.floor(Math.random()*copyOfRussianWords.length)
+      
+      const randomWord = copyOfRussianWords[randomIndex]
+       
+      this.availableWords.push(randomWord);
+        copyOfRussianWords.splice(randomIndex,1)      
+    } 
+  }
+
   }
   nextWord():boolean{
     if(this.availableWords.length===0){
