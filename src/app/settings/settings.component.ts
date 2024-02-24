@@ -8,6 +8,7 @@ import { CommonModule, NgSwitch, NgFor } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LANGUAGES, WORDS } from '../../fakeDB/database';
 import { ActivatedRoute } from '@angular/router';
+import { DictionaryService } from '../services/dictionary.service';
 
 @Component({
   selector: 'app-settings',
@@ -34,10 +35,11 @@ export class SettingsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private settingsService: SettingsService,
+    private dictionaryService:DictionaryService
   ) {}
 
   ngOnInit(): void {
-   // this.selectedNativeLanguage =localStorage.getItem('selectedLanguage') as string;
+   
     const selectedLanguage= localStorage.getItem('selectedLanguage')?.toLowerCase();
    console.log('selectedLanguage ',selectedLanguage) 
    if(selectedLanguage){
@@ -53,7 +55,9 @@ export class SettingsComponent implements OnInit {
       );
       console.log('язык', this.languagesForLearning);
     });
-  }
+  this.wordsNumber=this.dictionaryService.getWordsByLanguage(this.selectedLearningLanguage).length
+console.log('this.wordsNumber',this.wordsNumber)  
+}
 
   onChangeLanguage(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
@@ -66,6 +70,8 @@ export class SettingsComponent implements OnInit {
     console.log(
       'Выбранный язык для изучения: ' + this.selectedLearningLanguage,
     );
+
+    this.wordsNumber=this.dictionaryService.getWordsByLanguage(this.selectedLearningLanguage).length
   }
   onChangeQuantity(event: Event) {
     const selectNumber = event.target as HTMLSelectElement;
@@ -82,4 +88,4 @@ export class SettingsComponent implements OnInit {
   }
 }
 
-// private settingsServiceService:SettingsServiceService){}
+

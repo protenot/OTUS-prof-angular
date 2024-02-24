@@ -16,12 +16,47 @@
    <p>Вы выбрали русский язык</p>
    <button (click)="clearSelectedLanguage()">Вернуться к выбору родного языка</button>
    <p> Для начала упражнений перейдите на страницу настроек</p>
-   <p *ngIf = "selectedLearningLanguage"> Для упражнений вы выбрали английский язык {{selectedLearningLanguage}}</p>
+   <div *ngIf = "selectedLearningLanguage">
+   <p > Для упражнений вы выбрали английский язык {{selectedLearningLanguage}} и теперь можете добавить слова для изучения
+     в Ваш словарь.</p>
+    <p> Вводите слова на русском языке, вы увидите перевод, который при нажатии на кнопку "Добавить в словарь" будут туда
+      добавлены</p>
+      <form ac>
+        <input type="text"
+        [(ngModel)]="wordToTranslate"
+        placeholder="Введите слово"
+        [ngModelOptions]="{ standalone: true }"
+        />
+        <button (click)="translateToEnglish(wordToTranslate)">Перевести</button>
+        <p>{{translatedWord}}</p><p>{{information}}</p>
+        <button (click)="addToDictionary()">Добавить в словарь</button>
+      </form>
+    </div>
   </div>
   <div *ngSwitchCase="'english'">
     <p>To start the exercises, go to the settings page</p>
     <p>You have chosen English</p>
     <button (click)="clearSelectedLanguage()">Go back to choosing your native language</button>
+    <p> To start the exercises, go to the settings page</p>
+    <div *ngIf = "selectedLearningLanguage">
+    <p> You have chosen Russian for the exercisesand now you can add words to learn
+      to your dictionary.</p>
+     <p>Enter words in English, you will see the translation, which, when you click on the "Add to dictionary" button, will be there
+      added</p>
+       <form ac>
+         <input type="text"
+         [(ngModel)]="wordToTranslate"
+         placeholder="Enter the word"
+         [ngModelOptions]="{ standalone: true }"
+         />
+         <button (click)="translateToRussian(wordToTranslate)">Translate</button>
+         <p>{{translatedWord}}</p><p>{{information}}</p>
+         <button (click)="addToDictionary()">Add to Dictionary</button>
+       </form>
+  
+  
+  
+  
   </div>
   <div *ngSwitchDefault></div>
 </div>

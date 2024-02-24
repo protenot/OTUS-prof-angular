@@ -13,7 +13,15 @@ export class DictionaryService {
   addWord(word:string,language:string){
 const words:string[] = this.getWordsByLanguage(language);
 words.push(word);
-//this.setWordsByLanguage(language, words);
+
+this.setWordsByLanguage(language, words);
+if(language==='russian'){
+  RussianWords.push(word)
+}
+if(language==='english'){
+  WORDS.push(word)
+}
+
   }
 
   getWordsByLanguage(language:string):string[]{

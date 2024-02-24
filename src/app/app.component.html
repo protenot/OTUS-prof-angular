@@ -9,13 +9,20 @@
   <body>
     <header>
       <!-- Здесь может быть ваш заголовок, навигационное меню и т.д. -->
-      <nav>
-        <ul class="menu">
-          <li><a routerLink="/">Home</a></li>
+      <nav *ngIf="(settingsService.selectedNativeLanguage$ | async) as selectedLanguage">
+        <ul class="menu" *ngIf="selectedLanguage === 'russian'">
+          <li><a routerLink="/">Главная</a></li>
           <li><a routerLink="/go">Упражнения</a></li>
+          <li><a routerLink="/settings">Настройки</a></li>
+        </ul>
+        <ul class="menu" *ngIf="selectedLanguage === 'english'">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/go">Exercises</a></li>
           <li><a routerLink="/settings">Settings</a></li>
         </ul>
       </nav>
+      
+      
     </header>
 
     <main>

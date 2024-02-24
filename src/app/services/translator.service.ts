@@ -17,7 +17,7 @@ export class TranslatorService {
     return this.http
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .get<any>(url)
-      .pipe(map((res) => res.responseData.translatedText.replace(regex, '')));
+      .pipe(map((res) => res.responseData.translatedText.toLowerCase().replace(regex, '')));
   }
 
   translateRussianWord(word: string): Observable<string> {
@@ -29,7 +29,7 @@ export class TranslatorService {
     return this.http
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .get<any>(url)
-      .pipe(map((res) => res.responseData.translatedText.replace(regex, '')));
+      .pipe(map((res) => res.responseData.translatedText.toLowerCase().replace(regex, '')));
   }
 
   compareTranslation(correctAnswer: string, userAnswer: string): boolean {
