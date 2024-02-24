@@ -3,9 +3,9 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { routes } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { SettingsService } from './services/settings-service.service';
 
@@ -32,9 +32,9 @@ export class AppComponent implements OnInit{
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule,
+   
     MatSlideToggleModule,
-    BrowserModule,
+
     CommonModule,
     HttpClientModule,
   ],

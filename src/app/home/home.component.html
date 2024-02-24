@@ -1,6 +1,6 @@
-<label *ngIf="!selectedLanguage" for="native-language"
-  >Выберете свой родной язык/Choose your native language:</label
->
+
+<label  *ngIf="!selectedLanguage" for="native-language"
+  >Выберете свой родной язык/Choose your native language:</label>
 <select *ngIf="!selectedLanguage" 
   name="native-language"
   id="native-language"
@@ -8,26 +8,29 @@
 >
   <option value="">Выберете/Choose</option>
   <option *ngFor="let language of languages" [value]="language.toLowerCase()">
-    {{ language }}
+ 
+    {{language}}
   </option>
 </select>
+
+
 <div [ngSwitch]="selectedLanguage">
   <div *ngSwitchCase="'russian'">
    <p>Вы выбрали русский язык</p>
-   <button (click)="clearSelectedLanguage()">Вернуться к выбору родного языка</button>
+   <button mat-raised-button color = "primary" (click)="clearSelectedLanguage()">Вернуться к выбору родного языка</button>
    <p> Для начала упражнений перейдите на страницу настроек</p>
    <div *ngIf = "selectedLearningLanguage">
    <p > Для упражнений вы выбрали английский язык {{selectedLearningLanguage}} и теперь можете добавить слова для изучения
      в Ваш словарь.</p>
     <p> Вводите слова на русском языке, вы увидите перевод, который при нажатии на кнопку "Добавить в словарь" будут туда
       добавлены</p>
-      <form ac>
+      <form mat-form-field>
         <input type="text"
         [(ngModel)]="wordToTranslate"
         placeholder="Введите слово"
         [ngModelOptions]="{ standalone: true }"
         />
-        <button (click)="translateToEnglish(wordToTranslate)">Перевести</button>
+        <button mat-raised-button (click)="translateToEnglish(wordToTranslate)">Перевести</button>
         <p>{{translatedWord}}</p><p>{{information}}</p>
         <button (click)="addToDictionary()">Добавить в словарь</button>
       </form>

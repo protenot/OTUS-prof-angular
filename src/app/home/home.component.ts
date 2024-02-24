@@ -2,22 +2,34 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SettingsService } from '../services/settings-service.service';
 import { CommonModule } from '@angular/common';
 import { LANGUAGES } from '../../fakeDB/database';
-import { FormsModule } from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DictionaryService } from '../services/dictionary.service';
 import { TranslatorService } from '../services/translator.service';
 import { HttpClient, HttpClientModule} from '@angular/common/http';
 
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [MatSelectModule,
+     MatFormFieldModule,
+      MatButtonModule,
+      //BrowserAnimationsModule,
+      CommonModule,
+        FormsModule,
+         HttpClientModule,
+         ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   providers: [HttpClient, TranslatorService],
 })
 export class HomeComponent implements OnInit {
   
-  
+  disableSelect = new FormControl(false);
   selectedLanguage = '';
   selectedLearningLanguage = '';
   languages = LANGUAGES;
