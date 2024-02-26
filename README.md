@@ -1,27 +1,40 @@
-# OTUSProfAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+# Учебная работа: Приложение для запоминания иностранных слов
 
-## Development server
+Приложение для запоминания иностранных слов с использованием фреймворка Angular версии "^17.1.0".
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## В проекте использованы:
 
-## Code scaffolding
+<p align="center">
+    <a href="https://angular.io/" target="_blank" rel="noreferrer">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angularjs/angularjs-original.svg" alt="Angular" width="40" height="40" />
+    </a>
+    <a href="https://rxjs.dev/" target="_blank" rel="noreferrer">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rxjs/rxjs-original.svg" alt="RxJS" width="40" height="40" />
+    </a>
+    <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" width="40" height="40" />
+    </a>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    
+</p>
 
-## Build
+## Задание
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+В этом приложении пользователь сможет добавлять слова для изучения и проходить тесты для запоминания слов. Оно состоит из трех страниц:
 
-## Running unit tests
+1. **Adding words to the dictionary**: Добавление слов в словарь.
+2. **Exercises**: Упражнения.
+3. **Settings**: Настройки.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+На главном экране на странице “home”,  пользователь может добавить новое слово в словарь и видит список последних добавленных слов.
+На странице упражнений (“go”) пользователь занимается тестированием своих знаний. Ему показывается слово на языке, выбранном для изучения, и он должен написать его перевод на родной  язык. Если перевод правильный, слово засчитывается, иначе показываем ошибку. Мы начнем с двух языков - русского и английского.
+На странице настроек пользователь выбирает языки, количество слов в упражнении.
+Навигация по страницам происходит с помощью ссылок в верхней части страниц, каждой странице соответствует отдельный url.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Порядок работы
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. На главной странице выбираем родной язык.
+2. Переходим на страницу настроек для выбора языка для изучения.
+3. Можно вернуться на главную страницу для ввода слов в словарь или выбрать количество слов для упражнений и перейти на страницу упражнения.

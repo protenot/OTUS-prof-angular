@@ -1,0 +1,38 @@
+<div [ngSwitch]="selectedLearningLanguage">
+  <div *ngSwitchCase="'english'">
+    <p>Потрачено: {{ timeSpent }} seconds</p>
+    <div *ngIf="currentWord">
+      <p>
+        Как слово <span>{{ currentWord }}</span> переводится на русский язык
+      </p>
+      <input
+        type="text"
+        [(ngModel)]="userAnswer"
+        placeholder="Введите перевод"
+      />
+      <button (click)="checkAnswer(userAnswer)">Проверить</button>
+    </div>
+    <div *ngIf="showResult">
+      <p>{{ resultMessage }}</p>
+      <button (click)="nextWord()">Следующее слово</button>
+    </div>
+  </div>
+  <div *ngSwitchCase="'russian'">
+    <p>Time spent: {{ timeSpent }} секунд</p>
+    <div *ngIf="currentWord">
+      <p>
+        How does the word <span>{{ currentWord }}</span> translate into English
+      </p>
+      <input
+        type="text"
+        [(ngModel)]="userAnswer"
+        placeholder="Enter the translation"
+      />
+      <button (click)="checkEnglishAnswer(userAnswer)">Check</button>
+    </div>
+    <div *ngIf="showResult">
+      <p>{{ resultMessage }}</p>
+      <button (click)="nextEnglishWord()">Next</button>
+    </div>
+  </div>
+</div>

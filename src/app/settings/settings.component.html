@@ -1,0 +1,54 @@
+<div [ngSwitch]="selectedNativeLanguage">
+  <label *ngSwitchDefault
+    >Вернитесь на главную страницу и выберете свой родной язык</label
+  >
+  <label *ngSwitchCase="'russian'" for="learning-language"
+    >Выберетe язык для изучения:</label
+  >
+
+  <label *ngSwitchCase="'english'" for="learning-language"
+    >Select a language to study:</label
+  >
+  <select
+    *ngIf="selectedNativeLanguage"
+    name="learning-language"
+    id="native-language"
+    (change)="onChangeLanguage($event)"
+  >
+    <option value="">Выберете/Choose</option>
+    <option
+      *ngFor="let language of languagesForLearning"
+      [value]="language.toLowerCase()"
+    >
+      {{ language }}
+    </option>
+  </select>
+</div>
+<div *ngIf="selectedLearningLanguage" [ngSwitch]="selectedNativeLanguage">
+  <p *ngSwitchCase="'russian'">
+    <b>Чтобы добавить слова в словарь вернитесь на домашнюю страницу или </b>
+  </p>
+  <label for="words-number" *ngSwitchCase="'russian'">
+    Выберете количество слов в упражнении от 5 до {{ wordsNumber }}
+  </label>
+  <p *ngSwitchCase="'english'">
+    <b>To add words to the dictionary, go back to the home page or</b>
+  </p>
+  <label for="words-number" *ngSwitchCase="'english'"
+    >Choose the number of words in the exercise from 5 to
+    {{ wordsNumber }}</label
+  >
+  <select
+    name="words-number"
+    id="words-number"
+    (change)="onChangeQuantity($event)"
+  >
+    <option value="">---</option>
+    <option
+      *ngFor="let item of [].constructor(wordsNumber - 5); let i = index"
+      [value]="i"
+    >
+      {{ i + 5 }}
+    </option>
+  </select>
+</div>
