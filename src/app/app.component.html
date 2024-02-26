@@ -8,8 +8,12 @@
   </head>
   <body>
     <header>
-      <!-- Здесь может быть ваш заголовок, навигационное меню и т.д. -->
-      <nav *ngIf="(settingsService.selectedNativeLanguage$ | async) as selectedLanguage">
+
+      <nav
+        *ngIf="
+          settingsService.selectedNativeLanguage$ | async as selectedLanguage
+        "
+      >
         <ul class="menu" *ngIf="selectedLanguage === 'russian'">
           <li><a routerLink="/">Главная</a></li>
           <li><a routerLink="/go">Упражнения</a></li>
@@ -21,12 +25,10 @@
           <li><a routerLink="/settings">Settings</a></li>
         </ul>
       </nav>
-      
-      
     </header>
 
     <main>
-      <!-- Здесь будет отображаться содержимое текущей страницы -->
+     
       <router-outlet></router-outlet>
     </main>
 

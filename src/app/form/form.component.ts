@@ -1,10 +1,8 @@
 import { CommonModule, NgIf, NgSwitch } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-//import { RussianWords, WORDS } from '../../fakeDB/database';
 import { TranslatorService } from '../services/translator.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-//import { BrowserModule } from '@angular/platform-browser';
 import { DictionaryService } from '../services/dictionary.service';
 
 @Component({
@@ -20,8 +18,6 @@ export class FormComponent implements OnInit {
   @Input() wordNumber: number = 0;
   @Input() firstWord: string = '';
 
-  //words: string[] = WORDS;
-  //russianWords: string[] = RussianWords;
   currentWord: string = '';
   userAnswer: string = '';
   showResult: boolean = false;
@@ -30,15 +26,23 @@ export class FormComponent implements OnInit {
   exerciseFinished: boolean = false;
 
   private availableWords: string[] = [];
-  constructor(private translatorService: TranslatorService, 
-   private dictionaryService:DictionaryService) {
-      this.availableWords=this.dictionaryService.getWordsByLanguage(this.selectedLearningLanguage)
-    }
+  constructor(
+    private translatorService: TranslatorService,
+    private dictionaryService: DictionaryService,
+  ) {
+    this.availableWords = this.dictionaryService.getWordsByLanguage(
+      this.selectedLearningLanguage,
+    );
+  }
   ngOnInit(): void {
     this.startTimer();
     this.currentWord = this.firstWord;
-    const copyOfRussianWords = [...this.dictionaryService.getWordsByLanguage('russian')];
-    const copyOfWords = [...this.dictionaryService.getWordsByLanguage('english')];
+    const copyOfRussianWords = [
+      ...this.dictionaryService.getWordsByLanguage('russian'),
+    ];
+    const copyOfWords = [
+      ...this.dictionaryService.getWordsByLanguage('english'),
+    ];
     this.availableWords = [];
     if (this.selectedLearningLanguage === 'english') {
       while (
@@ -114,9 +118,7 @@ export class FormComponent implements OnInit {
           this.resultMessage = 'Неверно. Попробуйте еще раз.';
         }
       },
-      /* error=>{
-   console.error('Произошла ошибка при переводе:', error);
-   } */
+
     );
   }
 

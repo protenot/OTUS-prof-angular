@@ -10,5 +10,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 30px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+button {
+  margin: 20px;
+}

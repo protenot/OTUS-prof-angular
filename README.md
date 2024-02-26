@@ -3,7 +3,7 @@
 
 Приложение для запоминания иностранных слов с использованием фреймворка Angular версии "^17.1.0".
 
-## This project built with:
+## В проекте использованы:
 
 <p align="center">
     <a href="https://angular.io/" target="_blank" rel="noreferrer">

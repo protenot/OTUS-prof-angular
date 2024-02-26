@@ -13,11 +13,16 @@ export class TranslatorService {
     const regex = /[^\p{L}\p{M}]/gu;
     const url = `${this.apiUrl}?q=${word}&langpair=en|${targetLanguage}&mt=1`;
 
-   
-    return this.http
- // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .get<any>(url)
-      .pipe(map((res) => res.responseData.translatedText.toLowerCase().replace(regex, '')));
+    return (
+      this.http
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .get<any>(url)
+        .pipe(
+          map((res) =>
+            res.responseData.translatedText.toLowerCase().replace(regex, ''),
+          ),
+        )
+    );
   }
 
   translateRussianWord(word: string): Observable<string> {
@@ -25,11 +30,17 @@ export class TranslatorService {
     const regex = /[^\p{L}\p{M}]/gu;
     const url = `${this.apiUrl}?q=${word}&langpair=ru|en`;
     console.log('url ', url);
-  
-    return this.http
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .get<any>(url)
-      .pipe(map((res) => res.responseData.translatedText.toLowerCase().replace(regex, '')));
+
+    return (
+      this.http
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .get<any>(url)
+        .pipe(
+          map((res) =>
+            res.responseData.translatedText.toLowerCase().replace(regex, ''),
+          ),
+        )
+    );
   }
 
   compareTranslation(correctAnswer: string, userAnswer: string): boolean {
