@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SettingsService } from '../services/settings-service.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { LANGUAGES } from '../../fakeDB/database';
 import {FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DictionaryService } from '../services/dictionary.service';
@@ -22,7 +22,10 @@ import {MatSelectModule} from '@angular/material/select';
       CommonModule,
         FormsModule,
          HttpClientModule,
-         ReactiveFormsModule],
+         ReactiveFormsModule,
+        NgFor,
+        
+      ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   providers: [HttpClient, TranslatorService],
@@ -33,9 +36,10 @@ export class HomeComponent implements OnInit {
   selectedLanguage = '';
   selectedLearningLanguage = '';
   languages = LANGUAGES;
-  wordToTranslate = '';
-  translatedWord = '';
-  information ='';
+  wordToTranslate:string = '';
+  translatedWord:string = '';
+  information:string ='';
+  lastWords:string[]=[];
   constructor(
     private settingService: SettingsService,
     private dictionaryService:DictionaryService,
@@ -95,16 +99,19 @@ export class HomeComponent implements OnInit {
           }
 
       addToDictionary(){
-      const translatedWord=this.translatedWord.toLowerCase().trim();
+      const translatedWord:string=this.translatedWord.toLowerCase().trim();
       const wordsFromLS = this.dictionaryService.getWordsByLanguage(this.selectedLearningLanguage)
  
         if(!wordsFromLS.includes(translatedWord)){
       this.dictionaryService.addWord( this.translatedWord, this.selectedLearningLanguage)
        const wordsFromLS=this.dictionaryService.getWordsByLanguage(this.selectedLearningLanguage) 
        console.log(wordsFromLS)
-       this.information='Слово успешно добавлено в словарь.'}
+       this.information='Слово успешно добавлено в словарь.'
+       this.lastWords.push(this.translatedWord)
+      }
        else{
         this.information = 'Это слово уже есть в словаре.'
        }
+      
       }
 }  

@@ -34,6 +34,10 @@
         <p>{{translatedWord}}</p><p>{{information}}</p>
         <button (click)="addToDictionary()">Добавить в словарь</button>
       </form>
+      <h4> Последние добавленные слова</h4>
+      <ul *ngIf="wordToTranslate">
+      <li *ngFor="let word of lastWords" [value]="word.toLowerCase()">{{word}}</li>
+    </ul>
     </div>
   </div>
   <div *ngSwitchCase="'english'">
@@ -56,6 +60,10 @@
          <p>{{translatedWord}}</p><p>{{information}}</p>
          <button (click)="addToDictionary()">Add to Dictionary</button>
        </form>
+       <h4> Last added words</h4>
+      <ul *ngIf="wordToTranslate">
+      <li *ngFor="let word of lastWords" [value]="word.toLowerCase()">{{word}}</li>
+    </ul>
   
   
   
